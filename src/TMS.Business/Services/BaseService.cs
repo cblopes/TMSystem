@@ -2,5 +2,8 @@
 
 public abstract class BaseService
 {
+    protected void Notificar(string mensagem)
+    {
 
+    }
 }

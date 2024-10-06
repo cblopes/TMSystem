@@ -4,10 +4,31 @@ public class Pedido
 {
     private int _numeroPedido = 1000;
 
+    public Pedido(int id, int numeroPedido, DateTime horaPedido, List<Ocorrencia> ocorrencias, bool cancelado, bool concluido)
+    {
+        IdPedido = id;
+        NumeroPedido = numeroPedido;
+        HoraPedido = horaPedido;
+        Ocorrencias = ocorrencias;
+        IndCancelado = cancelado;
+        IndConcluido = concluido;
+    }
+
+    public Pedido()
+    {
+        NumeroPedido = _numeroPedido;
+        Ocorrencias = new List<Ocorrencia>();
+        HoraPedido = DateTime.Now;
+        IndCancelado = false;
+        IndConcluido = false;
+    }
+
     public int IdPedido { get; set; }
     public int NumeroPedido { get; set; }
-    public ICollection<Ocorrencia>? Ocorrencias { get; set; }
+    public List<Ocorrencia>? Ocorrencias { get; set; }
     public DateTime HoraPedido { get; set; }
     public bool IndCancelado { get; set; }
     public bool IndConcluido { get; set; }
+
+    public void AtualizarNumeroPedido() => _numeroPedido++;
 }

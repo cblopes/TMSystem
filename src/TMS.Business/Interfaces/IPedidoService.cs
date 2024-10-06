@@ -4,6 +4,6 @@ namespace TMS.Business.Interfaces;
 
 public interface IPedidoService : IDisposable
 {
-    Task Adicionar(Pedido pedido);
+    Task Adicionar();
     Task Remover(int id);
 }
