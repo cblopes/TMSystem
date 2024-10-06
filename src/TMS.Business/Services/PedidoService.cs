@@ -8,7 +8,9 @@ public class PedidoService : BaseService, IPedidoService
     private readonly IPedidoRepository _pedidoRespository;
     private readonly IOcorrenciaRepository _ocorrenciaRepository;
 
-    public PedidoService(IPedidoRepository pedidoRepository, IOcorrenciaRepository ocorrenciaRepository)
+    public PedidoService(IPedidoRepository pedidoRepository, 
+                         IOcorrenciaRepository ocorrenciaRepository,
+                         INotificador notificador) : base (notificador)
     {
         _pedidoRespository = pedidoRepository;
         _ocorrenciaRepository = ocorrenciaRepository;

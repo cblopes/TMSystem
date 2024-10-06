@@ -7,7 +7,8 @@ public class OcorrenciaService : BaseService, IOcorrenciaService
 {
     private readonly IOcorrenciaRepository _ocorrenciaRepository;
 
-    public OcorrenciaService(IOcorrenciaRepository ocorrenciaRepository)
+    public OcorrenciaService(IOcorrenciaRepository ocorrenciaRepository,
+                             INotificador notificador) : base(notificador)
     {
         _ocorrenciaRepository = ocorrenciaRepository;
     }
