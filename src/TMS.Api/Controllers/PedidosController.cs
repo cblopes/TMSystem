@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using TMS.Api.DTOs;
 using TMS.Business.Interfaces;
 
@@ -12,7 +13,10 @@ public class PedidosController : MainController
     private readonly IPedidoRepository _pedidoRepository;
     private readonly IMapper _mapper;
 
-    public PedidosController(IPedidoRepository pedidoRepository, IMapper mapper, IPedidoService pedidoService)
+    public PedidosController(IPedidoRepository pedidoRepository,
+                             IMapper mapper,
+                             IPedidoService pedidoService,
+                             INotificador notificador) : base(notificador)
     {
         _pedidoService = pedidoService;
         _pedidoRepository = pedidoRepository;
@@ -30,9 +34,9 @@ public class PedidosController : MainController
     {
         var pedido = await ObterPedido(id);
 
-        if (pedido == null) return NotFound();
+        if (pedido == null) return CustomResponse(HttpStatusCode.NotFound);
 
-        return Ok(pedido);
+        return CustomResponse(HttpStatusCode.OK, pedido);
     }
 
     [HttpPost]
@@ -40,7 +44,7 @@ public class PedidosController : MainController
     {
         await _pedidoService.Adicionar();
 
-        return CustomResponse();
+        return CustomResponse(HttpStatusCode.Created);
     }
 
     [HttpDelete("{id:int}")]
@@ -48,11 +52,11 @@ public class PedidosController : MainController
     {
         var pedido = ObterPedido(id);
 
-        if (pedido == null) return NotFound();
+        if (pedido == null) return CustomResponse(HttpStatusCode.NotFound);
 
         await _pedidoService.Remover(id);
 
-        return CustomResponse();
+        return CustomResponse(HttpStatusCode.NoContent);
     }
 
     private async Task<PedidoDTO> ObterPedido(int id)
