@@ -9,5 +9,7 @@ public class AutoMapperConfig : Profile
     public AutoMapperConfig()
     {
         CreateMap<Pedido, PedidoDTO>().ReverseMap();
+        CreateMap<Ocorrencia, OcorrenciaDTO>().ReverseMap();
+        CreateMap<Ocorrencia, OcorrenciaPostDTO>().ReverseMap();
     }
 }

@@ -7,9 +7,9 @@ public abstract class BaseService
 {
     private readonly INotificador _notificador;
 
-    protected BaseService(INotificador notificador)
+    public BaseService(INotificador notificador)
     {
-        notificador = _notificador;
+        _notificador = notificador;
     }
 
     protected void Notificar(string mensagem)

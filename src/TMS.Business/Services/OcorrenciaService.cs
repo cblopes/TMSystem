@@ -41,7 +41,7 @@ public class OcorrenciaService : BaseService, IOcorrenciaService
             var diferenca = ocorrencia.HoraOcorrencia.Subtract(ultimaOcorrencia.HoraOcorrencia);
             if (diferenca.TotalMinutes <= 10)
             {
-                Notificar($"Ocorrência cadastrada há menos de 10 minutos.");
+                Notificar("Ocorrência cadastrada há menos de 10 minutos.");
                 return;
             }
         }
