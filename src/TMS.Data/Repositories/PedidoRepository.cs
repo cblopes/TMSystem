@@ -11,7 +11,7 @@ public class PedidoRepository : Repository<Pedido>, IPedidoRepository
     public async Task<Pedido> ObterPedidoOcorrencias(int id)
     {
         return await Context.Pedidos.AsNoTracking()
-            .Include(x => x.Ocorrencias).FirstOrDefaultAsync();
+            .Include(x => x.Ocorrencias).FirstOrDefaultAsync(x => x.IdPedido == id);
     }
 
     public override async Task Remover(int id)
