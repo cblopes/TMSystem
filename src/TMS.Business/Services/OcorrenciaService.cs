@@ -18,7 +18,6 @@ public class OcorrenciaService : BaseService, IOcorrenciaService
 
     public async Task Adicionar(Ocorrencia ocorrencia)
     {
-        // TODO: verificar se o pedido existe
         var pedido = _pedidoRepository.ObterPedidoOcorrencias(ocorrencia.IdPedido).Result;
         if (pedido is null) 
         {
@@ -26,14 +25,12 @@ public class OcorrenciaService : BaseService, IOcorrenciaService
             return;
         }
 
-        // TODO: verificar se o pedido já foi concluído
         if (pedido.IndCancelado || pedido.IndConcluido)
         {
             Notificar("Pedido concluído ou cancelado. Inclusão inválida.");
             return;
         }
 
-        // TODO: verificar tipo da última ocorrência e se foi cadastrada há mais de 10 minutos
         var ultimaOcorrencia = pedido.Ocorrencias?.OrderByDescending(x => x.HoraOcorrencia).FirstOrDefault();
 
         if (ultimaOcorrencia?.TipoOcorrencia == ocorrencia.TipoOcorrencia)
@@ -82,7 +79,6 @@ public class OcorrenciaService : BaseService, IOcorrenciaService
 
     public async Task Remover(int id)
     {
-        // TODO: verificar se a ocorrência existe
         var ocorrencia = _ocorrenciaRepository.ObterOcorrenciaPedido(id).Result;
         if (ocorrencia is null)
         {
@@ -90,14 +86,12 @@ public class OcorrenciaService : BaseService, IOcorrenciaService
             return;
         }
 
-        // TODO: verificar se o pedido já foi concluído ou cancelado
         if (ocorrencia.Pedido.IndCancelado || ocorrencia.Pedido.IndConcluido)
         {
             Notificar("Pedido concluído ou cancelado. Exclusão inválida.");
             return;
         }
 
-        // TODO: verificar se o tipo permite que seja excluída
         if (ocorrencia.TipoOcorrencia != TipoOcorrencia.ClienteAusente &&
             ocorrencia.TipoOcorrencia != TipoOcorrencia.RotaEntrega)
         {
