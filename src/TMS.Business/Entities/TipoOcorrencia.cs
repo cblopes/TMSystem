@@ -6,5 +6,6 @@ public enum TipoOcorrencia
     RotaEntrega,
     Entregue,
     ClienteAusente,
-    AvariaProduto
+    AvariaProduto,
+    Cancelado
 }

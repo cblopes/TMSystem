@@ -24,7 +24,7 @@ public class PedidoService : BaseService, IPedidoService
             .OrderByDescending(x => x.NumeroPedido)
             .FirstOrDefault();
 
-        pedido.NumeroPedido = ultimoPedido is not null ? ultimoPedido.NumeroPedido + 1 : 1000; 
+        pedido.NumeroPedido = ultimoPedido is not null ? ultimoPedido.NumeroPedido + 1 : 1000;
 
         await _pedidoRespository.Adicionar(pedido);
     }
@@ -40,7 +40,7 @@ public class PedidoService : BaseService, IPedidoService
 
         if (pedido.IndCancelado || pedido.IndConcluido)
         {
-            Notificar("Não é permitido remover pedidos que já foram cancelados ou concluídos");
+            Notificar("Pedido concluído ou cancelado. Exclusão inválida.");
             return;
         }
 
