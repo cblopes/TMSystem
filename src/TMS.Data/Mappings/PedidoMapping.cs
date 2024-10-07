@@ -8,7 +8,7 @@ public class PedidoMapping : IEntityTypeConfiguration<Pedido>
 {
     public void Configure(EntityTypeBuilder<Pedido> builder)
     {
-        builder.HasKey(x => new { x.IdPedido, x.NumeroPedido });
+        builder.HasKey(x => x.IdPedido);
 
         builder.HasMany(x => x.Ocorrencias)
             .WithOne(x => x.Pedido)
