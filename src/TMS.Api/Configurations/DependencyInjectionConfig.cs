@@ -17,7 +17,7 @@ public static class DependencyInjectionConfig
 
         // Business
         services.AddScoped<INotificador, Notificador>();
-        services.AddScoped<IPedidoService, IPedidoService>();
+        services.AddScoped<IPedidoService, PedidoService>();
         services.AddScoped<IOcorrenciaService, OcorrenciaService>();
 
         return services;
