@@ -19,6 +19,13 @@ public class PedidoService : BaseService, IPedidoService
     public async Task Adicionar()
     {
         var pedido = new Pedido();
+
+        var ultimoPedido = _pedidoRespository.ObterTodos().Result
+            .OrderByDescending(x => x.NumeroPedido)
+            .FirstOrDefault();
+
+        pedido.NumeroPedido = ultimoPedido is not null ? ultimoPedido.NumeroPedido + 1 : 1000; 
+
         await _pedidoRespository.Adicionar(pedido);
     }
 

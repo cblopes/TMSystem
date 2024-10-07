@@ -2,8 +2,6 @@
 
 public class Pedido
 {
-    private int _numeroPedido = 1000;
-
     public Pedido(int id, int numeroPedido, DateTime horaPedido, List<Ocorrencia> ocorrencias, bool cancelado, bool concluido)
     {
         IdPedido = id;
@@ -16,7 +14,6 @@ public class Pedido
 
     public Pedido()
     {
-        NumeroPedido = _numeroPedido;
         Ocorrencias = new List<Ocorrencia>();
         HoraPedido = DateTime.Now;
         IndCancelado = false;
@@ -29,6 +26,4 @@ public class Pedido
     public DateTime HoraPedido { get; set; }
     public bool IndCancelado { get; set; }
     public bool IndConcluido { get; set; }
-
-    public void AtualizarNumeroPedido() => _numeroPedido++;
 }
