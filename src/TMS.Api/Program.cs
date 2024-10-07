@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TMS.Api.Configurations;
 using TMS.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.ResolveDependencies();
 
 var app = builder.Build();
 
